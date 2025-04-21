@@ -600,11 +600,34 @@
             // 점수 순위에 따라 정렬
             const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
             
+            // 최고 점수와 동일한 점수를 가진 유형들 찾기
+            const highestScore = sortedScores[0][1];
+            const highestTypes = sortedScores.filter(([_, score]) => score === highestScore)
+                                           .map(([type, _]) => type);
+            
+            // 리더십 유형 표시 텍스트 생성
+            let leadershipDisplay = '';
+            if (highestTypes.length === 1) {
+                leadershipDisplay = `<strong>${leaderType}</strong> 입니다`;
+            } else {
+                // 동점 유형들을 나열
+                const typeIcons = {
+                    "엄마형": "💖",
+                    "코치형": "🧭",
+                    "장인형": "🔧",
+                    "지휘관형": "🚩"
+                };
+                
+                leadershipDisplay = highestTypes.map(type => 
+                    `<strong>${typeIcons[type]} ${type}</strong>`
+                ).join(' / ') + ' 입니다';
+            }
+            
             let scoreHtml = '';
             sortedScores.forEach(([type, score]) => {
                 // 점수에 비례하는 막대 그래프 너비 계산 (최대 25점 기준)
                 const barWidthPercent = Math.round((score / 25) * 100);
-                const isHighest = type === leaderType;
+                const isHighest = highestTypes.includes(type);
                 const barColor = isHighest ? "#3498db" : "#95a5a6";
                 const typeIcon = type === "엄마형" ? "💖" : 
                                 type === "코치형" ? "🧭" : 
@@ -632,8 +655,8 @@
             resultDiv.innerHTML = `
                 <div style="margin: 20px 0; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box;">
                     <h2 style="text-align: center; margin-bottom: 20px; font-size: 24px;">🎯 당신의 리더십 유형은</h2>
-                    <p style="font-size: 28px; text-align: center; color: #2980b9; margin-bottom: 25px;">
-                        <strong>${leaderType}</strong> 입니다
+                    <p style="font-size: ${highestTypes.length > 1 ? '24px' : '28px'}; text-align: center; color: #2980b9; margin-bottom: 25px;">
+                        ${leadershipDisplay}
                     </p>
                     
                     <h3 style="text-align: center; margin-bottom: 20px; font-size: 20px;">유형별 점수</h3>
