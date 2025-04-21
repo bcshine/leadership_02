@@ -599,12 +599,11 @@
             // 모든 유형의 점수를 보여주는 결과 표시
             // 점수 순위에 따라 정렬
             const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-            const scoreBarWidth = 250; // 그래프 최대 너비 (픽셀)
             
             let scoreHtml = '';
             sortedScores.forEach(([type, score]) => {
                 // 점수에 비례하는 막대 그래프 너비 계산 (최대 25점 기준)
-                const barWidth = Math.round((score / 25) * scoreBarWidth);
+                const barWidthPercent = Math.round((score / 25) * 100);
                 const isHighest = type === leaderType;
                 const barColor = isHighest ? "#3498db" : "#95a5a6";
                 const typeIcon = type === "엄마형" ? "💖" : 
@@ -614,16 +613,16 @@
                 
                 scoreHtml += `
                 <div style="margin-bottom: 15px;">
-                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
-                        <div style="width: 120px; font-weight: ${isHighest ? 'bold' : 'normal'}; color: ${isHighest ? '#2980b9' : '#333'};">
+                    <div style="display: flex; align-items: center; margin-bottom: 5px; flex-wrap: wrap;">
+                        <div style="min-width: 80px; width: 25%; font-weight: ${isHighest ? 'bold' : 'normal'}; color: ${isHighest ? '#2980b9' : '#333'}; padding-right: 8px;">
                             ${typeIcon} ${type}
                         </div>
-                        <div style="flex-grow: 1;">
-                            <div style="background-color: #eee; border-radius: 10px; height: 20px; width: ${scoreBarWidth}px;">
-                                <div style="background-color: ${barColor}; border-radius: 10px; height: 20px; width: ${barWidth}px;"></div>
+                        <div style="flex-grow: 1; min-width: 100px;">
+                            <div style="background-color: #eee; border-radius: 10px; height: 20px; width: 100%;">
+                                <div style="background-color: ${barColor}; border-radius: 10px; height: 20px; width: ${barWidthPercent}%;"></div>
                             </div>
                         </div>
-                        <div style="width: 60px; text-align: right; margin-left: 10px; font-weight: ${isHighest ? 'bold' : 'normal'};">
+                        <div style="width: 60px; text-align: right; margin-left: 8px; font-weight: ${isHighest ? 'bold' : 'normal'};">
                             ${score}/25점
                         </div>
                     </div>
@@ -631,14 +630,14 @@
             });
             
             resultDiv.innerHTML = `
-                <div style="margin: 40px 0; padding: 30px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                    <h2 style="text-align: center; margin-bottom: 20px;">🎯 당신의 리더십 유형은</h2>
-                    <p style="font-size: 32px; text-align: center; color: #2980b9; margin-bottom: 30px;">
+                <div style="margin: 20px 0; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box;">
+                    <h2 style="text-align: center; margin-bottom: 20px; font-size: 24px;">🎯 당신의 리더십 유형은</h2>
+                    <p style="font-size: 28px; text-align: center; color: #2980b9; margin-bottom: 25px;">
                         <strong>${leaderType}</strong> 입니다
                     </p>
                     
-                    <h3 style="text-align: center; margin-bottom: 25px;">유형별 점수</h3>
-                    <div style="max-width: 500px; margin: 0 auto 30px auto;">
+                    <h3 style="text-align: center; margin-bottom: 20px; font-size: 20px;">유형별 점수</h3>
+                    <div style="width: 100%; margin: 0 auto 20px auto;">
                         ${scoreHtml}
                     </div>
                 </div>
