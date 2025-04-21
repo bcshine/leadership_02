@@ -2,15 +2,45 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4가지 리더십 유형 자가진단</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #f4f7fb;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
+            padding: 0;
+            margin: 0;
             line-height: 1.7;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        /* 모바일 환경 최적화 */
+        @media (max-width: 768px) {
+            body {
+                font-size: 18px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 20px;
+            }
+            .question strong {
+                font-size: 20px;
+            }
+            .scale label {
+                font-size: 20px;
+                margin-right: 8px;
+                padding: 5px;
+                display: inline-block;
+            }
+            .type-comparison p, .improvement p {
+                font-size: 18px;
+            }
         }
         h1, h2, h3 {
             color: #2c3e50;
@@ -20,9 +50,21 @@
         }
         .section {
             display: none;
+            max-width: 800px;
+            padding: 30px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
         .section.active {
             display: block;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 20px;
+            }
         }
         /* 질문 스타일 */
         .question {
@@ -50,6 +92,15 @@
             cursor: pointer;
             display: block;
             width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            button {
+                padding: 16px 24px;
+                font-size: 20px;
+                margin-top: 20px;
+            }
         }
         button:hover {
             background-color: #2980b9;
@@ -121,7 +172,6 @@
             <button type="submit" id="submitQuiz" style="display: none;">결과 보기</button>
         </form>
         <div class="result" id="result"></div>
-        <button id="nextButton" style="display: none;" onclick="showSection('comparison')">다음으로 이동</button>
     </div>
     
     <!-- Section 2: 유형별 특성 비교 -->
@@ -176,7 +226,7 @@
             <p><strong>해소 방식 & 삶의 태도:</strong> 운동이나 즉각적 실행으로 해소하며, 실행과 성과를 중시합니다.</p>
         </div>
         
-        <button onclick="showSection('improvement')">다음으로 이동</button>
+        <button id="improvementButton" onclick="const leaderType = document.querySelector('#comparison h1').textContent.replace(' 리더의 특성', ''); showSection('improvement', leaderType)">내 유형의 개선 방향 보기</button>
     </div>
     
     <!-- Section 3: 개선 방향 -->
@@ -308,25 +358,197 @@
                 currentQuestion++;
                 renderQuestion(currentQuestion);
                 nextQuestionBtn.style.display = 'none';
-            } else {
-                // 마지막 질문인 경우 제출 버튼 표시
-                nextQuestionBtn.style.display = 'none';
-                submitBtn.style.display = 'block';
+                
+                // 마지막 질문(12번)에 도달하면 다음 버튼 대신 결과 보기 버튼 표시
+                if (currentQuestion === questions.length - 1) {
+                    const radioButtons = document.querySelectorAll(`input[name="q${currentQuestion}"]`);
+                    radioButtons.forEach(radio => {
+                        radio.addEventListener('change', () => {
+                            answers[currentQuestion] = parseInt(radio.value);
+                            // 마지막 질문에 답하면 바로 결과 보기
+                            showResult();
+                        });
+                    });
+                }
             }
         });
 
         // 섹션 전환 함수
-        function showSection(sectionId) {
+        function showSection(sectionId, leaderType = null) {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
+            
+            // 특정 유형만 표시 (비교 페이지로 이동할 때)
+            if (sectionId === 'comparison' && leaderType) {
+                // 모든 유형 비교 항목 숨기기
+                document.querySelectorAll('.type-comparison').forEach(comp => {
+                    comp.style.display = 'none';
+                });
+                
+                // 제목 변경
+                document.querySelector("#comparison h1").textContent = `${leaderType} 리더의 특성`;
+                
+                // 해당 유형만 표시
+                let targetTypeElement;
+                if (leaderType === "엄마형") {
+                    targetTypeElement = document.querySelector(".type-comparison:nth-child(2)");
+                } else if (leaderType === "코치형") {
+                    targetTypeElement = document.querySelector(".type-comparison:nth-child(3)");
+                } else if (leaderType === "장인형") {
+                    targetTypeElement = document.querySelector(".type-comparison:nth-child(4)");
+                } else if (leaderType === "지휘관형") {
+                    targetTypeElement = document.querySelector(".type-comparison:nth-child(5)");
+                }
+                
+                if (targetTypeElement) {
+                    targetTypeElement.style.display = 'block';
+                }
+                
+                // 버튼 텍스트 변경
+                document.querySelector("#comparison button").textContent = `${leaderType} 리더의 개선 방향 보기`;
+            }
+            
+            // 특정 유형만 표시 (개선 방향 페이지로 이동할 때)
+            if (sectionId === 'improvement' && leaderType) {
+                // 모든 개선 방향 항목 숨기기
+                document.querySelectorAll('.improvement').forEach(imp => {
+                    imp.style.display = 'none';
+                });
+                
+                // 제목 변경
+                document.querySelector("#improvement h1").textContent = `${leaderType} 리더의 개선 방향`;
+                
+                // 해당 유형만 표시
+                let targetImprovementElement;
+                if (leaderType === "엄마형") {
+                    targetImprovementElement = document.querySelector(".improvement:nth-child(2)");
+                } else if (leaderType === "코치형") {
+                    targetImprovementElement = document.querySelector(".improvement:nth-child(3)");
+                } else if (leaderType === "장인형") {
+                    targetImprovementElement = document.querySelector(".improvement:nth-child(4)");
+                } else if (leaderType === "지휘관형") {
+                    targetImprovementElement = document.querySelector(".improvement:nth-child(5)");
+                }
+                
+                if (targetImprovementElement) {
+                    targetImprovementElement.style.display = 'block';
+                }
+                
+                // 버튼 텍스트 변경 및 다른 유형 보기 버튼 추가
+                const backButton = document.querySelector("#improvement button");
+                backButton.textContent = "처음으로 돌아가기";
+                
+                // 다른 유형 보기 버튼이 없으면 추가
+                if (!document.getElementById("showAllTypesButton")) {
+                    const showAllButton = document.createElement("button");
+                    showAllButton.id = "showAllTypesButton";
+                    showAllButton.textContent = "다른 리더십 유형도 살펴보기";
+                    showAllButton.style.marginTop = "15px";
+                    showAllButton.style.backgroundColor = "#2ecc71";
+                    
+                    showAllButton.onclick = function() {
+                        // 모든 개선 방향 표시
+                        document.querySelectorAll('.improvement').forEach(imp => {
+                            imp.style.display = 'block';
+                        });
+                        
+                        // 제목 원래대로 변경
+                        document.querySelector("#improvement h1").textContent = "4가지 리더십 유형별 향후 개선 방향";
+                        
+                        // 현재 버튼 숨기기
+                        this.style.display = "none";
+                        
+                        // 리더십 유형 선택 섹션 추가
+                        const typeSelectionSection = document.createElement("div");
+                        typeSelectionSection.id = "typeSelectionSection";
+                        typeSelectionSection.style.marginTop = "40px";
+                        typeSelectionSection.style.marginBottom = "40px";
+                        typeSelectionSection.style.textAlign = "center";
+                        typeSelectionSection.innerHTML = `
+                            <h2 style="margin-bottom: 20px;">다른 리더십 유형 탐색하기</h2>
+                            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 30px;">
+                                <button onclick="showSpecificType('엄마형')" style="width: calc(50% - 10px); margin-top: 5px; background-color: #e74c3c;">💖 엄마형 리더</button>
+                                <button onclick="showSpecificType('코치형')" style="width: calc(50% - 10px); margin-top: 5px; background-color: #3498db;">🧭 코치형 리더</button>
+                                <button onclick="showSpecificType('장인형')" style="width: calc(50% - 10px); margin-top: 5px; background-color: #9b59b6;">🔧 장인형 리더</button>
+                                <button onclick="showSpecificType('지휘관형')" style="width: calc(50% - 10px); margin-top: 5px; background-color: #f39c12;">🚩 지휘관형 리더</button>
+                            </div>
+                            <button id="showAllTypesComparisonButton" onclick="showAllTypes()" style="background-color: #34495e;">모든 유형 한 번에 비교하기</button>
+                        `;
+                        
+                        // 버튼 앞에 삽입
+                        document.querySelector("#improvement").insertBefore(typeSelectionSection, backButton);
+                    };
+                    
+                    // 기존 버튼 앞에 새 버튼 추가
+                    backButton.parentNode.insertBefore(showAllButton, backButton);
+                }
+                
+                // 모든 유형 보기 함수 추가 (글로벌 스코프에)
+                window.showAllTypes = function() {
+                    // 모든 유형 표시로 변경
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    document.getElementById("comparison").classList.add('active');
+                    document.querySelector("#comparison h1").textContent = "리더십 유형별 행동과 삶의 차이";
+                    
+                    // 모든 유형 표시
+                    document.querySelectorAll('.type-comparison').forEach(comp => {
+                        comp.style.display = 'block';
+                    });
+                    
+                    // 버튼 원래대로
+                    document.querySelector("#improvementButton").textContent = "유형별 개선 방향 보기";
+                    
+                    window.scrollTo(0, 0);
+                };
+                
+                // 특정 유형 보기 함수 추가 (글로벌 스코프에)
+                window.showSpecificType = function(leaderType) {
+                    // 먼저 특성 페이지로 이동
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    document.getElementById("comparison").classList.add('active');
+                    document.querySelector("#comparison h1").textContent = `${leaderType} 리더의 특성`;
+                    
+                    // 모든 유형 숨기기
+                    document.querySelectorAll('.type-comparison').forEach(comp => {
+                        comp.style.display = 'none';
+                    });
+                    
+                    // 해당 유형만 표시
+                    let targetTypeElement;
+                    if (leaderType === "엄마형") {
+                        targetTypeElement = document.querySelector(".type-comparison:nth-child(2)");
+                    } else if (leaderType === "코치형") {
+                        targetTypeElement = document.querySelector(".type-comparison:nth-child(3)");
+                    } else if (leaderType === "장인형") {
+                        targetTypeElement = document.querySelector(".type-comparison:nth-child(4)");
+                    } else if (leaderType === "지휘관형") {
+                        targetTypeElement = document.querySelector(".type-comparison:nth-child(5)");
+                    }
+                    
+                    if (targetTypeElement) {
+                        targetTypeElement.style.display = 'block';
+                    }
+                    
+                    // 버튼 텍스트 변경
+                    document.querySelector("#improvementButton").textContent = `${leaderType} 리더의 개선 방향 보기`;
+                    
+                    window.scrollTo(0, 0);
+                };
+            }
+            
             window.scrollTo(0, 0);
         }
 
-        // 폼 제출 처리
-        document.getElementById("quizForm").addEventListener("submit", function(e) {
-            e.preventDefault();
+        // 결과 표시 함수
+        function showResult() {
             const scores = { 엄마형: 0, 코치형: 0, 장인형: 0, 지휘관형: 0 };
 
             questions.forEach((q, i) => {
@@ -335,10 +557,58 @@
             });
 
             const best = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
-            resultDiv.innerHTML = `🎯 당신의 리더십 유형은 <strong>${best[0]}</strong>입니다. (점수: ${best[1]})`;
+            const leaderType = best[0]; // 유형 이름 저장
             
-            // 다음으로 이동 버튼 표시
-            document.getElementById("nextButton").style.display = "block";
+            // 질문 컨테이너 숨기기
+            document.getElementById("questions").style.display = "none";
+            document.getElementById("progress").style.display = "none";
+            document.getElementById("submitQuiz").style.display = "none";
+            document.getElementById("nextQuestion").style.display = "none";
+            document.getElementById("quizForm").style.marginBottom = "0";
+            
+            // 섹션 타이틀 변경
+            document.querySelector("#assessment h1").textContent = "리더십 유형 자가진단 결과";
+            
+            // 특성 및 개선 방향 가져오기
+            let typeCharacteristics = "";
+            let typeImprovement = "";
+            
+            // 해당 유형의 특성과 개선 방향 가져오기
+            if (leaderType === "엄마형") {
+                typeCharacteristics = document.querySelector(".type-comparison:nth-child(2)").outerHTML;
+                typeImprovement = document.querySelector(".improvement:nth-child(2)").outerHTML;
+            } else if (leaderType === "코치형") {
+                typeCharacteristics = document.querySelector(".type-comparison:nth-child(3)").outerHTML;
+                typeImprovement = document.querySelector(".improvement:nth-child(3)").outerHTML;
+            } else if (leaderType === "장인형") {
+                typeCharacteristics = document.querySelector(".type-comparison:nth-child(4)").outerHTML;
+                typeImprovement = document.querySelector(".improvement:nth-child(4)").outerHTML;
+            } else if (leaderType === "지휘관형") {
+                typeCharacteristics = document.querySelector(".type-comparison:nth-child(5)").outerHTML;
+                typeImprovement = document.querySelector(".improvement:nth-child(5)").outerHTML;
+            }
+            
+            // 결과만 표시
+            resultDiv.innerHTML = `
+                <div style="margin: 40px 0; padding: 30px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <h2 style="text-align: center; margin-bottom: 20px;">🎯 당신의 리더십 유형은</h2>
+                    <p style="font-size: 32px; text-align: center; color: #2980b9; margin-bottom: 20px;">
+                        <strong>${leaderType}</strong> 입니다
+                    </p>
+                    <p style="text-align: center; font-size: 18px; margin-bottom: 30px;">점수: ${best[1]}/15점</p>
+                </div>
+                
+                <button onclick="showSection('comparison', '${leaderType}')">내 유형의 특성 보기</button>
+            `;
+            
+            // 맨 위로 스크롤
+            window.scrollTo(0, 0);
+        }
+        
+        // 폼 제출 처리 (결과 보기 버튼용)
+        document.getElementById("quizForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            showResult();
         });
     </script>
 </body>
