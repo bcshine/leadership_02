@@ -618,13 +618,22 @@
                     "지휘관형": "🚩"
                 };
                 
-                // 동점 리더십 타입 텍스트 생성 시 단어 깨짐 방지
-                const typesText = highestTypes.map(type => 
-                    `<strong>${typeIcons[type]} ${type}</strong>`
-                ).join(' / ');
+                // 동점 리더십 타입 텍스트 생성 시 타입명에 공백 추가로 줄바꿈 제어
+                const typesText = highestTypes.map(type => {
+                    // 5글자 단어일 경우 (예: "엄마형리더") 중간에 공백 없는 줄바꿈 문자 삽입
+                    // 참고: 현재 typeIcons[type] + ' ' + type 이 표시되므로 5글자는 아니나 
+                    // 미래에 "형"을 뺀 "엄마리더"처럼 4글자 단어에 대비
+                    let displayType = type;
+                    if (type.length >= 4) {
+                        // 타입명 중간에 줄바꿈 제어용 공백 추가 (예: "엄마형", "코치형"에서 "형" 앞에)
+                        const insertAt = Math.ceil(type.length / 2);
+                        displayType = type.substring(0, insertAt) + '<wbr>' + type.substring(insertAt);
+                    }
+                    return `<strong>${typeIcons[type]} ${displayType}</strong>`;
+                }).join(' / ');
                 
-                // 단어가 깨지지 않도록 줄바꿈 처리
-                leadershipDisplay = `<span style="display: inline-block; white-space: nowrap;">${typesText}</span> <span style="display: inline-block; white-space: nowrap;">입니다</span>`;
+                // 단어 사이에 줄바꿈이 자연스럽게 발생하도록 처리
+                leadershipDisplay = `${typesText} <span style="display: inline-block;">입니다</span>`;
             }
             
             let scoreHtml = '';
