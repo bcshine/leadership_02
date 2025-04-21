@@ -618,9 +618,13 @@
                     "지휘관형": "🚩"
                 };
                 
-                leadershipDisplay = highestTypes.map(type => 
+                // 동점 리더십 타입 텍스트 생성 시 단어 깨짐 방지
+                const typesText = highestTypes.map(type => 
                     `<strong>${typeIcons[type]} ${type}</strong>`
-                ).join(' / ') + ' 입니다';
+                ).join(' / ');
+                
+                // 단어가 깨지지 않도록 줄바꿈 처리
+                leadershipDisplay = `<span style="display: inline-block; white-space: nowrap;">${typesText}</span> <span style="display: inline-block; white-space: nowrap;">입니다</span>`;
             }
             
             let scoreHtml = '';
@@ -637,7 +641,7 @@
                 scoreHtml += `
                 <div style="margin-bottom: 15px;">
                     <div style="display: flex; align-items: center; margin-bottom: 5px; flex-wrap: wrap;">
-                        <div style="min-width: 80px; width: 25%; font-weight: ${isHighest ? 'bold' : 'normal'}; color: ${isHighest ? '#2980b9' : '#333'}; padding-right: 8px;">
+                        <div style="min-width: 80px; width: 25%; font-weight: ${isHighest ? 'bold' : 'normal'}; color: ${isHighest ? '#2980b9' : '#333'}; padding-right: 8px; white-space: nowrap;">
                             ${typeIcon} ${type}
                         </div>
                         <div style="flex-grow: 1; min-width: 100px;">
