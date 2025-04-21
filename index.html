@@ -93,15 +93,32 @@
         strong {
             color: #2980b9;
         }
+        /* 한 번에 한 질문만 표시 */
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        #nextQuestion {
+            display: none;
+        }
+        .progress {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
     <!-- Section 1: 자가진단 -->
     <div class="section active" id="assessment">
         <h1>4가지 리더십 유형 자가진단</h1>
+        <div class="progress" id="progress">1/12</div>
         <form id="quizForm">
             <div id="questions"></div>
-            <button type="submit">결과 보기</button>
+            <button type="button" id="nextQuestion">다음 질문</button>
+            <button type="submit" id="submitQuiz" style="display: none;">결과 보기</button>
         </form>
         <div class="result" id="result"></div>
         <button id="nextButton" style="display: none;" onclick="showSection('comparison')">다음으로 이동</button>
@@ -222,7 +239,7 @@
         const questions = [
             { text: "1. 직원이 힘들어 보이면 일보다 감정부터 살핀다.", type: "엄마형" },
             { text: "2. 팀원이 스스로 생각하고 성장하도록 기다린다.", type: "코치형" },
-            { text: "3. 작업 품질이나 서비스의 완성도가 항상 중요하다.", type: "장인형" },
+            { text: "3. 작업, 품질, 서비스의 완성도가 항상 중요하다.", type: "장인형" },
             { text: "4. 문제 상황에서는 신속하게 방향을 지시한다.", type: "지휘관형" },
             { text: "5. 감정적으로 힘들어하는 직원에게 위로와 공감을 자주 표현한다.", type: "엄마형" },
             { text: "6. 질문을 통해 직원 스스로 답을 찾게 한다.", type: "코치형" },
@@ -234,19 +251,68 @@
             { text: "12. 위기 상황에서는 빠르게 판단하고 강하게 이끈다.", type: "지휘관형" }
         ];
 
-        // 질문 렌더링
+        // 현재 질문 인덱스
+        let currentQuestion = 0;
         const container = document.getElementById("questions");
         const resultDiv = document.getElementById("result");
+        const nextQuestionBtn = document.getElementById("nextQuestion");
+        const submitBtn = document.getElementById("submitQuiz");
+        const progressDiv = document.getElementById("progress");
 
-        questions.forEach((q, i) => {
+        // 각 질문에 대한 응답 저장 배열
+        const answers = [];
+
+        // 질문 렌더링 함수
+        function renderQuestion(index) {
+            const q = questions[index];
             const div = document.createElement("div");
-            div.className = "question";
+            div.className = "question active";
             div.innerHTML = `<strong>${q.text}</strong><div class="scale">` +
                 [1,2,3,4,5].map(n =>
-                    `<label><input type="radio" name="q${i}" value="${n}" required /> ${n}</label>`
+                    `<label><input type="radio" name="q${index}" value="${n}" required /> ${n}</label>`
                 ).join("") +
                 `</div>`;
+            
+            // 이전 질문 숨기기
+            const prevQuestion = container.querySelector('.question.active');
+            if (prevQuestion) {
+                prevQuestion.classList.remove('active');
+            }
+            
             container.appendChild(div);
+            
+            // 이미 답변한 질문인 경우 체크 표시
+            if (answers[index]) {
+                document.querySelector(`input[name="q${index}"][value="${answers[index]}"]`).checked = true;
+            }
+            
+            // 진행 상황 업데이트
+            progressDiv.textContent = `${index + 1}/12`;
+            
+            // 응답이 선택되면 다음 버튼 활성화
+            const radioButtons = div.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    answers[index] = parseInt(radio.value);
+                    nextQuestionBtn.style.display = 'block';
+                });
+            });
+        }
+
+        // 초기 질문 렌더링
+        renderQuestion(0);
+
+        // 다음 질문 버튼 이벤트
+        nextQuestionBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion(currentQuestion);
+                nextQuestionBtn.style.display = 'none';
+            } else {
+                // 마지막 질문인 경우 제출 버튼 표시
+                nextQuestionBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            }
         });
 
         // 섹션 전환 함수
@@ -261,11 +327,10 @@
         // 폼 제출 처리
         document.getElementById("quizForm").addEventListener("submit", function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
             const scores = { 엄마형: 0, 코치형: 0, 장인형: 0, 지휘관형: 0 };
 
             questions.forEach((q, i) => {
-                const score = parseInt(formData.get("q" + i));
+                const score = answers[i];
                 scores[q.type] += score;
             });
 
