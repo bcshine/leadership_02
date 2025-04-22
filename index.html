@@ -15,6 +15,36 @@
             height: 100vh;
         }
         
+        /* 조합 버튼 스타일 */
+        .combination-button {
+            flex: 1;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .combination-button:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .combination-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #444;
+        }
+        
+        .combination-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+        
         /* 모바일 환경 최적화 */
         @media (max-width: 768px) {
             body {
@@ -43,7 +73,7 @@
             }
         }
         h1, h2, h3 {
-            color: #2c3e50;
+            color: #000000;
         }
         h1 {
             text-align: center;
@@ -85,8 +115,8 @@
             margin-top: 30px;
             padding: 12px 24px;
             font-size: 18px;
-            background-color: #3498db;
-            color: #fff;
+            background-color: #e0f0f5;
+            color: #000000;
             border: none;
             border-radius: 6px;
             cursor: pointer;
@@ -103,19 +133,19 @@
             }
         }
         button:hover {
-            background-color: #2980b9;
+            background-color: #c6e6f0;
         }
         .result {
             margin-top: 40px;
             font-size: 20px;
             text-align: center;
             font-weight: bold;
-            color: #2c3e50;
+            color: #000000;
         }
         /* 유형 비교 스타일 */
         .type-comparison {
             background-color: #fff;
-            border-left: 6px solid #3498db;
+            border-left: 6px solid #d9e9ef;
             padding: 20px;
             margin-bottom: 30px;
             border-radius: 8px;
@@ -126,23 +156,23 @@
             background: #fff;
             padding: 25px;
             margin-bottom: 30px;
-            border-left: 6px solid #3498db;
+            border-left: 6px solid #d9e9ef;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .improvement h2 {
             margin-top: 0;
-            color: #2980b9;
+            color: #000000;
         }
         .improvement h3 {
             margin-bottom: 5px;
-            color: #2c3e50;
+            color: #000000;
         }
         .improvement p {
             margin-top: 0;
         }
         strong {
-            color: #2980b9;
+            color: #000000;
         }
         /* 한 번에 한 질문만 표시 */
         .question {
@@ -754,105 +784,180 @@
         
         <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 30px 0;">
             <button onclick="showSection('followership')" style="width: calc(33% - 10px);">팔로우십 유형 목록으로</button>
-            <button onclick="showSection('followership_passive')" style="width: calc(33% - 10px); background-color: #e74c3c;">이전 유형: 고립수동형 팔로워</button>
-            <button onclick="showSection('followership_independent')" style="width: calc(33% - 10px); background-color: #3498db;">처음 유형: 자기주도형 팔로워</button>
+            <button onclick="showSection('followership_passive')" style="width: calc(33% - 10px); background-color: #f8d7da; color: #721c24;">이전 유형: 고립수동형 팔로워</button>
+            <button onclick="showSection('followership_independent')" style="width: calc(33% - 10px); background-color: #cfe2ff; color: #084298;">처음 유형: 자기주도형 팔로워</button>
         </div>
     </div>
 
     <!-- Section 9: 리더십-팔로우십 조합 매트릭스 -->
     <div class="section" id="leadership_followership_matrix">
-        <h1>리더십-팔로우십 조합 매트릭스</h1>
+        <h1>리더십-팔로우십 궁합 매트릭스</h1>
         
         <div style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 30px;">
-            <p>4가지 리더십 유형과 4가지 팔로우십 유형의 조합을 통해 총 16가지의 고유한 팀 역학이 만들어집니다. 각 조합은 서로 다른 강점과 도전과제를 가지고 있습니다. 아래 매트릭스에서 조합을 선택하여 자세한 특성과 효과적인 협업 방법을 알아보세요. <a href="#" onclick="event.preventDefault(); showSection('all_combinations');" style="color: #9b59b6; font-weight: bold;">모든 조합 요약 페이지로 이동하기 →</a></p>
+            <p>4가지 리더십 유형과 4가지 팔로우십 유형의 궁합을 통해 총 16가지의 고유한 팀 역학이 만들어집니다. 각 궁합은 서로 다른 강점과 도전과제를 가지고 있습니다. 아래 매트릭스에서 궁합을 선택하여 자세한 특성과 효과적인 협업 방법을 알아보세요. <a href="#" onclick="event.preventDefault(); showSection('all_combinations');" style="color: #9b59b6; font-weight: bold;">모든 궁합 요약 페이지로 이동하기 →</a></p>
             
             <div style="margin: 30px 0 15px 0;">
-                <h2 style="text-align: center; margin-bottom: 20px;">리더십-팔로우십 16가지 조합</h2>
+                <h2 style="text-align: center; margin-bottom: 20px;">리더십-팔로우십 16가지 궁합</h2>
                 
-                <div style="overflow-x: auto;">
-                    <div style="display: grid; grid-template-columns: auto repeat(4, 1fr); gap: 10px; margin-bottom: 20px; align-items: center; min-width: 600px;">
-                        <!-- Header row -->
-                        <div style="font-weight: bold; text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">리더십 ↓ 팔로우십 →</div>
-                        <div style="font-weight: bold; text-align: center; background-color: #3498db; color: white; padding: 10px; border-radius: 5px;">자기주도형</div>
-                        <div style="font-weight: bold; text-align: center; background-color: #27ae60; color: white; padding: 10px; border-radius: 5px;">능동협력형</div>
-                        <div style="font-weight: bold; text-align: center; background-color: #e74c3c; color: white; padding: 10px; border-radius: 5px;">고립수동형</div>
-                        <div style="font-weight: bold; text-align: center; background-color: #f39c12; color: white; padding: 10px; border-radius: 5px;">관계의존형</div>
+                <div style="margin-bottom: 30px;">
+                    <!-- 엄마형 리더 섹션 -->
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: bold; text-align: center; background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; margin-bottom: 15px;">💖 엄마형 리더</div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- 팔로우십 유형별 버튼 -->
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #cfe2ff; color: #084298; padding: 10px; border-radius: 5px;">자기주도형</div>
+                                <button onclick="showSection('combination_1')" class="combination-button">
+                                    <div class="combination-title">궁합 1</div>
+                                    <div class="combination-subtitle">궁합: △ 보통</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #d1e7dd; color: #0a3622; padding: 10px; border-radius: 5px;">능동협력형</div>
+                                <button onclick="showSection('combination_2')" class="combination-button">
+                                    <div class="combination-title">궁합 2</div>
+                                    <div class="combination-subtitle">궁합: ○ 매우 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #f8d7da; color: #842029; padding: 10px; border-radius: 5px;">고립수동형</div>
+                                <button onclick="showSection('combination_3')" class="combination-button">
+                                    <div class="combination-title">궁합 3</div>
+                                    <div class="combination-subtitle">궁합: ✖ 나쁨</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #fff3cd; color: #664d03; padding: 10px; border-radius: 5px;">관계의존형</div>
+                                <button onclick="showSection('combination_4')" class="combination-button">
+                                    <div class="combination-title">궁합 4</div>
+                                    <div class="combination-subtitle">궁합: ○ 좋음</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <!-- Row 1: 엄마형 리더 -->
-                    <div style="font-weight: bold; text-align: center; background-color: #e74c3c; color: white; padding: 10px; border-radius: 5px;">💖 엄마형 리더</div>
-                    <button onclick="showSection('combination_1')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 1</div>
-                        <div style="font-size: 12px;">궁합: △ 보통</div>
-                    </button>
-                    <button onclick="showSection('combination_2')" aria-label="조합 2: 엄마형 리더 × 능동협력형 팔로워, 궁합 매우 좋음" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)';">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 2</div>
-                        <div style="font-size: 12px;">궁합: ○ 매우 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_3')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 3</div>
-                        <div style="font-size: 12px;">궁합: ✖ 나쁨</div>
-                    </button>
-                    <button onclick="showSection('combination_4')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 4</div>
-                        <div style="font-size: 12px;">궁합: ○ 좋음</div>
-                    </button>
+                    <!-- 코치형 리더 섹션 -->
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: bold; text-align: center; background-color: #d1ecf1; color: #0c5460; padding: 15px; border-radius: 8px; margin-bottom: 15px;">🧭 코치형 리더</div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- 팔로우십 유형별 버튼 -->
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #cfe2ff; color: #084298; padding: 10px; border-radius: 5px;">자기주도형</div>
+                                <button onclick="showSection('combination_5')" class="combination-button">
+                                    <div class="combination-title">궁합 5</div>
+                                    <div class="combination-subtitle">궁합: ○ 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #d1e7dd; color: #0a3622; padding: 10px; border-radius: 5px;">능동협력형</div>
+                                <button onclick="showSection('combination_6')" class="combination-button">
+                                    <div class="combination-title">궁합 6</div>
+                                    <div class="combination-subtitle">궁합: ○ 매우 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #f8d7da; color: #842029; padding: 10px; border-radius: 5px;">고립수동형</div>
+                                <button onclick="showSection('combination_7')" class="combination-button">
+                                    <div class="combination-title">궁합 7</div>
+                                    <div class="combination-subtitle">궁합: ✖ 나쁨</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #fff3cd; color: #664d03; padding: 10px; border-radius: 5px;">관계의존형</div>
+                                <button onclick="showSection('combination_8')" class="combination-button">
+                                    <div class="combination-title">궁합 8</div>
+                                    <div class="combination-subtitle">궁합: ○ 좋음</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <!-- Row 2: 코치형 리더 -->
-                    <div style="font-weight: bold; text-align: center; background-color: #3498db; color: white; padding: 10px; border-radius: 5px;">🧭 코치형 리더</div>
-                    <button onclick="showSection('combination_5')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 5</div>
-                        <div style="font-size: 12px;">궁합: ○ 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_6')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 6</div>
-                        <div style="font-size: 12px;">궁합: ○ 매우 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_7')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 7</div>
-                        <div style="font-size: 12px;">궁합: ✖ 나쁨</div>
-                    </button>
-                    <button onclick="showSection('combination_8')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 8</div>
-                        <div style="font-size: 12px;">궁합: ○ 좋음</div>
-                    </button>
+                    <!-- 장인형 리더 섹션 -->
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: bold; text-align: center; background-color: #e2d4f0; color: #5a348b; padding: 15px; border-radius: 8px; margin-bottom: 15px;">🔧 장인형 리더</div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- 팔로우십 유형별 버튼 -->
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #cfe2ff; color: #084298; padding: 10px; border-radius: 5px;">자기주도형</div>
+                                <button onclick="showSection('combination_9')" class="combination-button">
+                                    <div class="combination-title">궁합 9</div>
+                                    <div class="combination-subtitle">궁합: ○ 매우 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #d1e7dd; color: #0a3622; padding: 10px; border-radius: 5px;">능동협력형</div>
+                                <button onclick="showSection('combination_10')" class="combination-button">
+                                    <div class="combination-title">궁합 10</div>
+                                    <div class="combination-subtitle">궁합: ○ 매우 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #f8d7da; color: #842029; padding: 10px; border-radius: 5px;">고립수동형</div>
+                                <button onclick="showSection('combination_11')" class="combination-button">
+                                    <div class="combination-title">궁합 11</div>
+                                    <div class="combination-subtitle">궁합: ○ 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #fff3cd; color: #664d03; padding: 10px; border-radius: 5px;">관계의존형</div>
+                                <button onclick="showSection('combination_12')" class="combination-button">
+                                    <div class="combination-title">궁합 12</div>
+                                    <div class="combination-subtitle">궁합: ○ 좋음</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <!-- Row 3: 장인형 리더 -->
-                    <div style="font-weight: bold; text-align: center; background-color: #9b59b6; color: white; padding: 10px; border-radius: 5px;">🔧 장인형 리더</div>
-                    <button onclick="showSection('combination_9')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 9</div>
-                        <div style="font-size: 12px;">궁합: ○ 매우 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_10')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 10</div>
-                        <div style="font-size: 12px;">궁합: ○ 매우 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_11')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 11</div>
-                        <div style="font-size: 12px;">궁합: ○ 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_12')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 12</div>
-                        <div style="font-size: 12px;">궁합: ○ 좋음</div>
-                    </button>
-                    
-                    <!-- Row 4: 지휘관형 리더 -->
-                    <div style="font-weight: bold; text-align: center; background-color: #f39c12; color: white; padding: 10px; border-radius: 5px;">🚩 지휘관형 리더</div>
-                    <button onclick="showSection('combination_13')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 13</div>
-                        <div style="font-size: 12px;">궁합: ○ 매우 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_14')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 14</div>
-                        <div style="font-size: 12px;">궁합: ○ 좋음</div>
-                    </button>
-                    <button onclick="showSection('combination_15')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 15</div>
-                        <div style="font-size: 12px;">궁합: ✖ 나쁨</div>
-                    </button>
-                    <button onclick="showSection('combination_16')" style="text-align: center; background-color: #f8f9fa; padding: 10px; border-radius: 5px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-                        <div style="font-weight: bold; margin-bottom: 5px;">조합 16</div>
-                        <div style="font-size: 12px;">궁합: ✖ 나쁨</div>
-                    </button>
+                    <!-- 지휘관형 리더 섹션 -->
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: bold; text-align: center; background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; margin-bottom: 15px;">🚩 지휘관형 리더</div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- 팔로우십 유형별 버튼 -->
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #cfe2ff; color: #084298; padding: 10px; border-radius: 5px;">자기주도형</div>
+                                <button onclick="showSection('combination_13')" class="combination-button">
+                                    <div class="combination-title">궁합 13</div>
+                                    <div class="combination-subtitle">궁합: ○ 매우 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #d1e7dd; color: #0a3622; padding: 10px; border-radius: 5px;">능동협력형</div>
+                                <button onclick="showSection('combination_14')" class="combination-button">
+                                    <div class="combination-title">궁합 14</div>
+                                    <div class="combination-subtitle">궁합: ○ 좋음</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #f8d7da; color: #842029; padding: 10px; border-radius: 5px;">고립수동형</div>
+                                <button onclick="showSection('combination_15')" class="combination-button">
+                                    <div class="combination-title">궁합 15</div>
+                                    <div class="combination-subtitle">궁합: ✖ 나쁨</div>
+                                </button>
+                            </div>
+                            
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <div style="width: 110px; font-weight: bold; text-align: center; background-color: #fff3cd; color: #664d03; padding: 10px; border-radius: 5px;">관계의존형</div>
+                                <button onclick="showSection('combination_16')" class="combination-button">
+                                    <div class="combination-title">궁합 16</div>
+                                    <div class="combination-subtitle">궁합: ✖ 나쁨</div>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -860,15 +965,15 @@
         
         <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 30px 0;">
             <button onclick="showSection('assessment')" style="width: calc(25% - 10px);">처음으로 돌아가기</button>
-            <button onclick="showSection('leadership_followership_relation')" style="width: calc(25% - 10px); background-color: #3498db;">리더십-팔로우십 관계</button>
-            <button onclick="showSection('leadership_followership_matrix')" style="width: calc(25% - 10px); background-color: #9b59b6;">리더십-팔로우십 매트릭스</button>
-            <button onclick="showSection('followership_independent')" style="width: calc(25% - 10px); background-color: #27ae60;">첫 팔로우십 유형 보기</button>
+            <button onclick="showSection('leadership_followership_relation')" style="width: calc(25% - 10px); background-color: #cfe2ff; color: #084298;">리더십-팔로우십 관계</button>
+            <button onclick="showSection('leadership_followership_matrix')" style="width: calc(25% - 10px); background-color: #e2d4f0; color: #5a348b;">리더십-팔로우십 궁합</button>
+            <button onclick="showSection('followership_independent')" style="width: calc(25% - 10px); background-color: #d1e7dd; color: #0a3622;">첫 팔로우십 유형 보기</button>
         </div>
     </div>
 
-    <!-- Section 10: 조합 1 - 엄마형 리더 × 자기주도형 팔로워 -->
+    <!-- Section 10: 궁합 1 - 엄마형 리더 × 자기주도형 팔로워 -->
     <div class="section" id="combination_1">
-        <h1>조합 1. 엄마형 리더 × 자기주도형 팔로워</h1>
+        <h1>궁합 1. 엄마형 리더 × 자기주도형 팔로워</h1>
         
         <div class="combination-detail" style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 30px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -877,9 +982,9 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>엄마형 리더는 따뜻한 관심과 정서적 유대를 바탕으로 팀을 이끄는 유형입니다. 직원의 감정과 상황에 민감하게 반응하며, 배려와 격려를 통해 구성원을 끌어올리려는 성향이 강합니다. 반면, 자기주도형 팔로워는 리더의 지시나 감정적 개입 없이도 스스로 계획하고 실행하는 독립적인 성향을 지니고 있습니다. 책임감이 강하고 자율성을 중시하며, 리더가 간섭하지 않아도 높은 수준의 업무 성과를 스스로 만들어냅니다.</p>
-                <p>이 두 유형의 조합은 언뜻 보기엔 이상적일 수 있으나, 실제 현장에서는 "정서적 리더십"과 "독립적 팔로우십" 사이의 온도 차이로 인해 미묘한 충돌이 발생할 수 있습니다.</p>
+                <p>이 두 유형의 궁합은 언뜻 보기엔 이상적일 수 있으나, 실제 현장에서는 "정서적 리더십"과 "독립적 팔로우십" 사이의 온도 차이로 인해 미묘한 충돌이 발생할 수 있습니다.</p>
             </div>
             
             <div style="margin: 20px 0;">
@@ -922,7 +1027,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>엄마형 리더는 감성적 공감과 배려로 팀원을 감싸안는 리더십 스타일을 갖고 있습니다. 구성원의 감정을 세심히 살피고, 정서적 안정과 관계 중심의 분위기를 통해 동기부여하려 합니다. 능동협력형 팔로워는 리더의 기대와 신뢰를 강하게 동기로 삼아 주도적으로 움직이며, 팀워크와 협업을 중요하게 여기는 스타일입니다. 이 둘의 조합은 정서적 신뢰와 행동 동기가 자연스럽게 연결되며, 몰입과 성과가 동시에 나올 수 있는 매우 좋은 궁합입니다.</p>
             </div>
             
@@ -969,7 +1074,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>엄마형 리더는 사람을 챙기고 감정을 보듬는 데 탁월하지만, 고립수동형 팔로워는 타인의 감정에 무관심하고, 주도성도 낮은 유형입니다. 이 조합에서는 리더의 배려와 따뜻한 말이 팔로워에게는 의미 없는 잔소리로 받아들여질 수 있고, 반대로 리더는 "왜 이렇게 아무 반응이 없지?"라는 정서적 소진을 경험하게 됩니다. 서로를 점점 오해하고 기대를 낮추게 되는 조합입니다.</p>
             </div>
             
@@ -1014,7 +1119,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>엄마형 리더는 감정 중심의 따뜻한 리더십으로 사람을 보살피고, 관계의존형 팔로워는 리더와 관계에 몰입하고 열정적인 신뢰를 보여주는 유형입니다. 두 유형 모두 관계가 잘 맞아 '동질감'의 관계가 형성될 수 있습니다. 이 조합에서는 서로 정서적 안정감을 주고 받을 수 있습니다. 두 유형 모두 감정적이고 협력적인 분위기를 만들 수 있습니다.</p>
             </div>
             
@@ -1059,7 +1164,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>코치형 리더는 구체적인 대화와 능동적 경청을 통해 팀원의 성장을 돕는 유형입니다. 질문을 통해 사고를 유도하며, 스스로 해답을 찾아가도록 이끄는 것이 특징입니다. 자기주도형 팔로워는 높은 독립성과 책임감으로 스스로 계획하고 실행하는 팔로워입니다. 이 두 유형은 '자율성'과 '성장'이라는 키워드에서 만나는 매우 좋은 궁합의 조합입니다.</p>
             </div>
             
@@ -1104,7 +1209,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>코치형 리더는 질문과 경청을 통해 팀원의 성장을 촉진하는 유형입니다. 능동협력형 팔로워는 관계를 중시하면서도 적극적으로 참여하는 스타일입니다. 이 둘의 조합은 '성장'과 '협력'이라는 공통의 가치를 중심으로 최적의 시너지를 발휘합니다. 서로 대화하고 의견을 주고받는 것을 즐기며, 함께 발전해나가는 관계를 형성합니다.</p>
             </div>
             
@@ -1149,7 +1254,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>코치형 리더는 질문과 대화를 통해 팀원의 성장을 도모하는 리더입니다. 질문을 던지고 스스로 답을 찾도록 유도하는 접근법을 사용합니다. 반면 고립수동형 팔로워는 자신의 생각은 있으나 표현하지 않고, 최소한의 참여만 하는 유형입니다. 이 조합에서 리더는 계속해서 질문하고 참여를 유도하지만, 팔로워는 반응이 없거나 최소한의 대답만 하는 패턴이 반복될 수 있습니다.</p>
             </div>
             
@@ -1194,7 +1299,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>코치형 리더는 질문과 경청을 통해 팀원의 성장을 돕는 유형입니다. 관계의존형 팔로워는 리더와의 관계에 의존하며 리더의 인정과 지지를 중요하게 여깁니다. 이 조합은 리더의 성장 지향적 접근과 팔로워의 관계 중심적 성향이 만나 상호 보완적인 관계를 형성할 수 있습니다. 코치형 리더는 관계의존형 팔로워에게 단계적 성장의 기회를 제공하고, 팔로워는 리더의 지지 속에서 점진적으로 독립성을 키워갈 수 있습니다.</p>
             </div>
             
@@ -1239,7 +1344,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>장인형 리더는 꼼꼼함과 완성도 중심의 리더십으로, 고품질의 결과물을 추구합니다. 매뉴얼, 기준, 체크리스트를 중시하며 실수 없는 운영을 목표로 합니다. 자기주도형 팔로워는 이러한 높은 기준과 품질 중심의 접근법을 스스로 계획하고 실행하는 독립적인 성향을 지니고 있습니다. 두 유형 모두 '완벽함'과 '품질'을 중시하는 공통점이 있어 최적의 시너지를 발휘할 수 있는 조합입니다.</p>
             </div>
             
@@ -1284,7 +1389,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>장인형 리더는 체계적이고 꼼꼼하며 기준을 중요시하는 유형입니다. 완성도와 품질에 집중하며, 디테일에 신경을 많이 씁니다. 능동협력형 팔로워는 관계를 중시하면서도 적극적으로 업무에 참여하는 유형입니다. 이 두 유형은 상호보완적인 특성을 갖고 있어 매우 좋은 궁합을 보입니다. 장인형 리더의 기술적 전문성과 능동협력형 팔로워의 관계 중심적 접근이 균형을 이루며, 팔로워는 리더의 높은 기준을 팀 내에서 효과적으로 전달하고 실행하는 역할을 합니다.</p>
             </div>
             
@@ -1329,7 +1434,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>장인형 리더는 꼼꼼함과 완성도를 중시하며, 체계적인 업무 수행과 책임감 있는 결과를 중요시합니다. 반면, 고립수동형 팔로워는 자신만의 생각은 있지만 행동으로 옮기는 데 소극적입니다. 이 조합에서는 업무 중심의 관계가 형성되며, 팔로워가 반응이 적고 표현이 부족해도 리더가 상대적으로 적게 개입하고 결과물에 집중하는 특성으로 인해 기능적인 업무 관계가 가능합니다.</p>
             </div>
             
@@ -1374,8 +1479,8 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
-                <p>장인형 리더는 꼼꼼하고 체계적이며 업무의 완성도를 중시합니다. 관계의존형 팔로워는 리더와의 관계에 의존하며 인정과 지지를 중요하게 여깁니다. 이 두 유형의 조합은 얼핏 보면 불일치할 것 같지만, 상호보완적인 특성을 지닙니다. 장인형 리더의 명확한 기준과 지침이 관계의존형 팔로워에게 안정감을 주고, 팔로워의 리더 지지와 공감 능력은 장인형 리더의 다소 딱딱할 수 있는 리더십에 인간적 요소를 더합니다.</p>
+                <h3>궁합 개요</h3>
+                <p>장인형 리더는 꼼꼼하고 체계적이며 업무의 완성도를 중시합니다. 관계의존형 팔로워는 리더와의 관계에 의존하며 인정과 지지를 중요하게 여깁니다. 이 두 유형의 궁합은 얼핏 보면 불일치할 것 같지만, 상호보완적인 특성을 지닙니다. 장인형 리더의 명확한 기준과 지침이 관계의존형 팔로워에게 안정감을 주고, 팔로워의 리더 지지와 공감 능력은 장인형 리더의 다소 딱딱할 수 있는 리더십에 인간적 요소를 더합니다.</p>
             </div>
             
             <div style="margin: 20px 0;">
@@ -1419,8 +1524,8 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
-                <p>지휘관형 리더는 명확한 지시와 빠른 결정으로 조직을 이끄는 리더십 스타일을 보여줍니다. 자기주도형 팔로워는 독립적인 사고와 높은 책임감으로 자율적으로 업무를 수행하는 타입입니다. 이 두 유형의 조합은 '결과 중심'이라는 공통점으로 인해 높은 시너지를 발휘할 수 있습니다. 리더가 방향과 목표를 명확히 제시하면, 팔로워는 자신의 방법으로 이를 달성하는 역동적인 관계가 형성됩니다.</p>
+                <h3>궁합 개요</h3>
+                <p>지휘관형 리더는 명확한 지시와 빠른 결정으로 조직을 이끄는 리더십 스타일을 보여줍니다. 자기주도형 팔로워는 독립적인 사고와 높은 책임감으로 자율적으로 업무를 수행하는 타입입니다. 이 두 유형의 궁합은 '결과 중심'이라는 공통점으로 인해 높은 시너지를 발휘할 수 있습니다. 리더가 방향과 목표를 명확히 제시하면, 팔로워는 자신의 방법으로 이를 달성하는 역동적인 관계가 형성됩니다.</p>
             </div>
             
             <div style="margin: 20px 0;">
@@ -1464,7 +1569,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>지휘관형 리더는 명확한 지시와 빠른 의사결정을 통해 팀을 이끄는 리더십 스타일을 가집니다. 능동협력형 팔로워는 관계를 중시하면서도 적극적으로 참여하는 유형입니다. 이 조합에서는 리더의 명확한 방향 제시와 팔로워의 팀 내 협력 촉진 능력이 만나 효과적인 실행력을 갖출 수 있습니다. 능동협력형 팔로워는 지휘관형 리더의 다소 딱딱할 수 있는 지시를 팀원들에게 부드럽게 전달하는 '완충 역할'을 수행할 수 있습니다.</p>
             </div>
             
@@ -1509,7 +1614,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>지휘관형 리더는 빠른 의사결정과 명확한 지시를 특징으로 하는 리더십 스타일을 가집니다. 고립수동형 팔로워는 타인과의 상호작용이 적고 행동력이 제한적인 유형입니다. 이 두 유형은 서로 정반대의 행동 양식을 가지고 있어 맞물리기 어려운 조합입니다. 지휘관형 리더의 행동 중심, 빠른 실행 요구와 고립수동형 팔로워의 무반응, 행동력 부족이 충돌하여 비효율적인 관계가 형성될 수 있습니다.</p>
             </div>
             
@@ -1554,7 +1659,7 @@
             </div>
             
             <div style="margin: 20px 0;">
-                <h3>조합 개요</h3>
+                <h3>궁합 개요</h3>
                 <p>지휘관형 리더는 업무 중심의 명확한 지시와 결과 중심의 리더십을 발휘합니다. 관계의존형 팔로워는 리더와의 관계에 의존하며 정서적 지지와 인정을 갈망합니다. 이 조합은 리더의 업무 중심적, 결과 지향적 스타일과 팔로워의 관계 중심적, 감정 지향적 스타일이 충돌하는 어려운 조합입니다. 리더는 감정보다 결과를 중시하고, 팔로워는 관계를 우선시하는 근본적인 가치 차이가 있습니다.</p>
             </div>
             
@@ -1593,13 +1698,13 @@
         <h1>16가지 리더십-팔로우십 조합 일람표</h1>
         
         <div style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 30px;">
-            <p>4가지 리더십 유형과 4가지 팔로우십 유형의 모든 조합을 한눈에 볼 수 있는 요약 페이지입니다. 각 조합의 특성과 궁합 정도를 참고하여 팀 구성 및 관계 개선에 활용하세요.</p>
-            <p style="font-size: 14px; color: #666; margin-top: 10px;"><i>각 조합 셀을 마우스로 가리키면 시각적 효과가 나타납니다. 클릭하면 해당 조합의 상세 페이지로 이동합니다.</i></p>
+            <p>4가지 리더십 유형과 4가지 팔로우십 유형의 모든 궁합을 한눈에 볼 수 있는 요약 페이지입니다. 각 궁합의 특성과 궁합 정도를 참고하여 팀 구성 및 관계 개선에 활용하세요.</p>
+            <p style="font-size: 14px; color: #666; margin-top: 10px;"><i>각 궁합 셀을 마우스로 가리키면 시각적 효과가 나타납니다. 클릭하면 해당 궁합의 상세 페이지로 이동합니다.</i></p>
             
             <div style="overflow-x: auto; margin: 30px 0;">
                 <table style="width: 100%; border-collapse: collapse; text-align: center; min-width: 700px;">
                     <caption style="caption-side: top; margin-bottom: 15px; text-align: left; font-weight: bold; color: #444;">
-                        리더십-팔로우십 유형 조합표 (클릭하여 각 조합 상세 보기)
+                        리더십-팔로우십 유형 궁합표 (클릭하여 각 궁합 상세 보기)
                     </caption>
                     <thead>
                         <tr>
@@ -1618,8 +1723,8 @@
                                 onclick="showSection('combination_1')" 
                                 onmouseover="this.style.backgroundColor='#f5f5f5'; this.style.transform='scale(1.02)';" 
                                 onmouseout="this.style.backgroundColor=''; this.style.transform='scale(1)';"
-                                role="button" aria-label="조합 1: 엄마형 리더 × 자기주도형 팔로워, 궁합 보통">
-                                <div style="font-weight: bold;">조합 1</div>
+                                role="button" aria-label="궁합 1: 엄마형 리더 × 자기주도형 팔로워, 궁합 보통">
+                                <div style="font-weight: bold;">궁합 1</div>
                                 <div style="color: #666;">궁합: △ 보통</div>
                                 <div style="font-size: 12px; margin-top: 5px;">정서적 리더 + 독립적 팔로워</div>
                             </td>
@@ -1627,18 +1732,18 @@
                                 onclick="showSection('combination_2')" 
                                 onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.1)';" 
                                 onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
-                                role="button" aria-label="조합 2: 엄마형 리더 × 능동협력형 팔로워, 궁합 매우 좋음">
-                                <div style="font-weight: bold;">조합 2</div>
+                                role="button" aria-label="궁합 2: 엄마형 리더 × 능동협력형 팔로워, 궁합 매우 좋음">
+                                <div style="font-weight: bold;">궁합 2</div>
                                 <div style="color: #27ae60;">궁합: ○ 매우 좋음</div>
                                 <div style="font-size: 12px; margin-top: 5px;">관계 중심의 시너지</div>
                             </td>
                             <td style="padding: 15px; border: 1px solid #e9ecef; cursor: pointer; background-color: #fdedec;" onclick="showSection('combination_3')">
-                                <div style="font-weight: bold;">조합 3</div>
+                                <div style="font-weight: bold;">궁합 3</div>
                                 <div style="color: #e74c3c;">궁합: ✖ 나쁨</div>
                                 <div style="font-size: 12px; margin-top: 5px;">정서적 괴리감 발생</div>
                             </td>
                             <td style="padding: 15px; border: 1px solid #e9ecef; cursor: pointer; background-color: #fef9e7;" onclick="showSection('combination_4')">
-                                <div style="font-weight: bold;">조합 4</div>
+                                <div style="font-weight: bold;">궁합 4</div>
                                 <div style="color: #f39c12;">궁합: ○ 좋음</div>
                                 <div style="font-size: 12px; margin-top: 5px;">과도한 의존성 주의</div>
                             </td>
