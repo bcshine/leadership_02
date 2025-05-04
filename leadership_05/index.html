@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중간계 리더십 실전코스 (25년)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts - Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 1번째 영역: 네비게이션바 -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo/logo_only3.png" alt="중간계캠퍼스 로고">
+            </div>
+            <div class="title">
+                <h1>중간계 리더십 실전코스 (25년)</h1>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#main-banner">홈</a></li>
+                <li><a href="#leadership-type">리더십 유형</a></li>
+                <li><a href="#employee-style">직원 스타일</a></li>
+                <li><a href="#contact">연락처</a></li>
+                <li><button id="chatbot-btn" class="btn">리더십 챗봇</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 2번째 영역: 메인 배너 -->
+    <section id="main-banner" class="section">
+        <div class="banner-bg"></div>
+        <div class="container">
+            <div class="banner-content">
+                <div class="main-logo">
+                    <img src="images/logo/logo_only3.png" alt="중간계캠퍼스 로고" class="banner-logo">
+                </div>
+                <h2 class="main-title">올바른 리더가 회사를 움직인다</h2>
+                <p class="main-description">중간계 리더십 실전코스에서 당신의 리더십을 발견하세요</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3번째 영역: 리더십 유형 -->
+    <section id="leadership-type" class="section card-section">
+        <div class="container">
+            <h2>리더십 유형</h2>
+            
+            <div class="schedule-container">
+                <h3 class="schedule-main-title">리더십 실전 코스 스케줄</h3>
+                <div class="table-responsive">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>회차</th>
+                                <th>일정</th>
+                                <th>내용</th>
+                                <th>비고</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1회</td>
+                                <td>7/1 (월) 19:00-21:00</td>
+                                <td>리더십 유형 진단 및 이해</td>
+                                <td>과제: 자신의 리더십 스타일 분석</td>
+                            </tr>
+                            <tr>
+                                <td>2회</td>
+                                <td>7/8 (월) 19:00-21:00</td>
+                                <td>효과적인 의사소통 방법</td>
+                                <td>과제: 어려운 대화 시나리오 실습</td>
+                            </tr>
+                            <tr>
+                                <td>3회</td>
+                                <td>7/15 (월) 19:00-21:00</td>
+                                <td>팀 관리 및 동기부여 전략</td>
+                                <td>과제: 팀원 동기부여 계획 수립</td>
+                            </tr>
+                            <tr>
+                                <td>4회</td>
+                                <td>7/22 (월) 19:00-21:00</td>
+                                <td>성과 관리 및 피드백 기법</td>
+                                <td>과제: 건설적 피드백 연습</td>
+                            </tr>
+                            <tr>
+                                <td>5회</td>
+                                <td>7/29 (월) 19:00-21:00</td>
+                                <td>갈등 관리 및 협상 스킬</td>
+                                <td>과제: 갈등 해결 사례 발표</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+
+            
+            <div class="test-button-container">
+                <p class="test-prompt">나의 리더십 유형을 알아보세요.</p>
+                <button id="leadership-test-btn" class="btn btn-large btn-test">나의 리더십 유형은?</button>
+            </div>
+            <div id="leadership-test" class="hidden"></div>
+            <div id="leadership-result" class="hidden">
+                <div class="leadership-types">
+                    <div class="type fade-in">
+                        <h3>엄마형 리더십 <span>🤗</span></h3>
+                        <p><strong>특징:</strong> 따뜻하고 지지적인 성향으로 구성원들의 감정과 복지를 중요시하는 리더십 유형입니다.</p>
+                        <p><strong>강점:</strong> 팀원들의 심리적 안정감을 제공하고 소속감을 강화합니다.</p>
+                        <p><strong>단점:</strong> 때로는 어려운 결정이나 엄격한 방향 제시가 필요할 때 불편함을 느낄 수 있습니다.</p>
+                    </div>
+                    <div class="type fade-in">
+                        <h3>장인형 리더십 <span>🔍</span></h3>
+                        <p><strong>특징:</strong> 정확성과 세부사항을 중시하며 높은 품질 기준을 유지하려는 리더십 유형입니다.</p>
+                        <p><strong>강점:</strong> 깊이 있는 분석과 전문성을 통해 탁월한 결과물을 만들어냅니다.</p>
+                        <p><strong>단점:</strong> 때로는 완벽주의로 인해 의사결정이 지연되거나 팀원의 자율성이 제한될 수 있습니다.</p>
+                    </div>
+                    <div class="type fade-in">
+                        <h3>코치형 리더십 <span>🏆</span></h3>
+                        <p><strong>특징:</strong> 구성원의 성장과 역량 개발에 초점을 맞추는 리더십 유형입니다.</p>
+                        <p><strong>강점:</strong> 팀원의 장기적 발전을 도모하고 자율성과 책임감을 키웁니다.</p>
+                        <p><strong>단점:</strong> 모든 사람이 자기주도적 학습에 적합하지 않을 수 있으며, 즉각적인 결과가 필요한 상황에서는 비효율적일 수 있습니다.</p>
+                    </div>
+                    <div class="type fade-in">
+                        <h3>지휘관형 리더십 <span>🎯</span></h3>
+                        <p><strong>특징:</strong> 명확한 방향 제시와 결과 지향적 접근법을 선호하는 리더십 유형입니다.</p>
+                        <p><strong>강점:</strong> 빠른 의사결정과 목표 달성에 뛰어나며 위기 상황에서 효과적입니다.</p>
+                        <p><strong>단점:</strong> 때로는 구성원들의 감정이나 개인적 상황을 고려하지 못할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4번째 영역: 직원 스타일 -->
+    <section id="employee-style" class="section card-section">
+        <div class="container">
+            <h2>직원 스타일</h2>
+            <div class="test-button-container">
+                <p class="test-prompt">직원들의 스타일을 알아보세요.</p>
+                <button id="employee-style-btn" class="btn btn-large btn-test">직원 스타일 알아보기</button>
+            </div>
+            <div id="employee-styles" class="hidden">
+                <div class="employee-style-container">
+                    <div class="employee-style-card fade-in" data-style="지시대기형">
+                        <h3>지시 대기형 <span>📋</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>스스로 판단하거나 먼저 행동하지 않음</li>
+                                    <li>"다 했어요, 다음은요?" 식의 태도</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>업무 프로세스를 매뉴얼화</li>
+                                    <li>자율적으로 판단할 수 있는 체크리스트 제공</li>
+                                    <li>'스스로 생각하고 먼저 행동'을 KPI(성과 지표)로 설정</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>자발적 행동 없이 주어진 업무만 처리. 스스로 다음 일을 찾지 않고 항상 지시를 기다림. 주체성 부족.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>정해진 매뉴얼이나 절차를 잘 따르며, 규칙적인 반복 업무에 적합.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>예상치 못한 상황이나 문제 발생 시 대처 능력 부족. 업무 속도와 팀 에너지 저하 유발 가능.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>일 처리 기준과 선택지를 사전에 제공하여 '스스로 판단'하는 경험을 늘려야 함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"이제는 스스로 다음 행동을 선택해보세요. 어떤 상황에서 어떤 선택을 할지 체크리스트를 참고해 판단해봅시다."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>업무 프로세스를 문서화해두고, 작은 상황이라도 스스로 결정하는 연습을 시킴.
+                                '스스로 행동하기'를 성과지표(KPI)로 설정하여 꾸준히 피드백.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="불만형">
+                        <h3>불만형 <span>😒</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>근무환경, 동료, 고객 등에 끊임없이 불평</li>
+                                    <li>긍정적인 면보다 부정적인 면만 강조</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>불만을 단호히 선 긋고 "개선 제안" 형태로만 받기</li>
+                                    <li>불만 표현은 개인 면담으로 제한</li>
+                                    <li>팀 내 긍정 분위기 강화 프로그램 운영</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>근무환경, 동료, 회사 정책 등 다양한 대상에 대해 지속적인 불평을 함. 문제 중심 사고가 강함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>숨은 문제나 불합리한 점을 빠르게 인지할 수 있는 감각이 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>긍정 에너지를 소모시키고, 주변 동료들에게까지 부정적 영향을 끼칠 수 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>불만을 단순 표현이 아닌 '구체적 개선 제안'으로 바꿔야 함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"불편한 점을 이야기할 때는, 함께 해결책까지 생각해보는 걸 원칙으로 합시다. 그냥 불만만 이야기하는 건 도움이 되지 않습니다."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>불만은 개인 면담으로만 수집. 팀 전체에는 긍정 강화 활동(예: 성과 공유 모임)을 통해 분위기를 관리.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="무책임형">
+                        <h3>무책임형 <span>🤷</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>실수나 문제를 자기 책임으로 인정 안 함</li>
+                                    <li>변명하거나 남 탓하는 경향</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>"문제-원인-개선책"을 스스로 적게 만들기</li>
+                                    <li>문제 발생시 책임 소재 명확화</li>
+                                    <li>실패 경험을 성장 기회로 연결하는 문화 조성</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>문제가 발생해도 책임을 인정하지 않고, 변명하거나 타인 탓을 하는 경향.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>일부 상황에서는 자신을 방어하려는 생존력이 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>팀워크 저하, 업무 오류 반복, 신뢰성 상실.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>실패를 숨기지 말고 공유하도록, '실패도 성과'라는 인식을 심어야 함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"문제가 생긴 건 괜찮습니다. 중요한 건 원인과 개선 방안을 명확히 찾고, 다음엔 어떻게 할지를 정하는 겁니다."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>'문제-원인-개선책'을 적게 하고, 책임 소재를 명확히 구분. 개선 시도 자체를 평가하는 문화를 조성.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="감정기복형">
+                        <h3>감정 기복형 <span>🎭</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>기분에 따라 일의 질, 태도가 심하게 달라짐</li>
+                                    <li>작은 일에도 크게 흔들림</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>감정 표현은 자유, 업무 기준은 일정하게 유지</li>
+                                    <li>심한 경우, 감정 다루기 교육(간단한 스트레스 관리법) 제공</li>
+                                    <li>기분이 일에 영향 미치지 않게 체크리스트 운영</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>기분 상태에 따라 일의 성과나 태도가 들쑥날쑥 변동.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>감정이 좋을 때는 에너지가 넘치고, 창의적 결과를 내기도 함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>업무 품질 유지가 불안정해 팀 전체 리듬을 깨뜨릴 수 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>감정 표현은 허용하되, 업무 기준은 항상 일정하게 유지하도록 함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"감정은 자연스러운 거예요. 다만 일의 기준은 변함없이 지켜야 합니다. 힘들 때는 같이 조율할 방법을 찾아봅시다."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>업무 체크리스트를 통해 '감정과 무관한 기본 업무'를 관리하고, 스트레스 관리 교육도 병행.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="자율과잉형">
+                        <h3>자율 과잉형 <span>🦅</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>규정이나 지시보다 본인 스타일을 우선</li>
+                                    <li>통제 불가 상황을 만듦</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>초기부터 "규칙"과 "재량 범위"를 명확히 설정</li>
+                                    <li>자유를 주되, 결과에 대한 책임을 분명히 함</li>
+                                    <li>자율권은 성과에 따라 단계적으로 부여</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>규정보다 자기 방식, 지시보다 자신의 스타일을 우선시함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>창의적 아이디어와 유연한 문제 해결력을 지님.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>조직 규율을 무너뜨리고, 통제 불가 상황을 만들 수 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>초기에 규칙과 재량 범위를 명확히 정하고, 결과 책임을 강화.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"당신의 자율성을 존중합니다. 다만, 자유에는 책임이 따릅니다. 정해진 규칙 안에서 창의적으로 움직여주세요."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>성과와 책임을 연결. 자유 권한은 단계별로 부여하며, 규정 준수 여부를 지속 체크.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="관심요구형">
+                        <h3>관심 요구형 <span>🔍</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>작은 성과에도 지나친 인정 요구</li>
+                                    <li>지속적인 칭찬 없으면 동기 저하</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>칭찬은 개인 면담이나 공식 자리에서 "균형있게" 제공</li>
+                                    <li>성과 기준을 명확히 하고, 공정한 보상 시스템 마련</li>
+                                    <li>과도한 관심 요구는 '자율 목표 관리'로 돌리기</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>작은 성과에도 과도한 인정과 칭찬을 기대. 지속적인 관심과 피드백이 없으면 금방 동기가 떨어짐.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>작은 일에도 성취감을 느끼고, 외부 인정에 민감해 빠른 반응을 보일 수 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>지나치게 칭찬을 요구하면 사장의 에너지를 소모시키고, 공정성 이슈를 유발할 수 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>성과 기준을 명확히 정하고, 공식적 자리에서 균형 잡힌 칭찬 제공.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"성과가 나올 때마다 인정을 할 겁니다. 다만 모든 성과가 똑같이 큰 의미를 갖는 것은 아니에요. 기준에 따라 공정하게 칭찬하겠습니다."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>과도한 관심 요구를 '자율 목표 관리'로 전환.
+성과 중심 보상 체계를 강화하고, 인정이 필요한 부분과 아닌 부분을 명확히 구분하여 관리.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="은근한반항형">
+                        <h3>은근한 반항형 <span>😏</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>겉으로는 '네' 하지만 실행은 느림</li>
+                                    <li>지시사항을 왜곡하거나 소극적으로 따름</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>업무 진행 체크를 '구체적, 수치적'으로 관리</li>
+                                    <li>명확한 피드백과 결과 리뷰</li>
+                                    <li>반복될 경우 공식 경고 후 교체 고려</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>겉으로는 '네'라고 하지만 지시사항을 소극적으로 수행하거나 왜곡해 실행.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>조직에 필요한 비판적 사고를 지니고 있을 가능성 있음.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>명령 불이행, 업무 지연, 리더십 약화 초래.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>업무 지시를 명확하고 구체적으로 전달하고, 결과를 수치적으로 관리.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"당신의 생각을 듣는 것도 중요하지만, 일단 합의된 업무는 정확하게 빠르게 진행해야 합니다. 나중에 개선 의견은 별도로 받을게요."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>업무 지시를 문서화하고, 체크리스트와 수치 기준으로 진행 상황 관리.
+반복적 반항 시에는 공식 경고를 주고, 최악의 경우 교체를 고려.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="무기력형">
+                        <h3>무기력형 <span>🐌</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>업무 의욕, 에너지 수준이 현저히 낮음</li>
+                                    <li>최소한만 하려는 태도</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>소소한 성공 경험을 만들어 동기 부여</li>
+                                    <li>관심 있는 업무를 조금씩 맡겨보기</li>
+                                    <li>극심한 경우, 인사 전환 또는 퇴직 유도 고려</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>업무 의욕이 매우 낮고, 최소한의 노력만 기울이려 함. 소극적 태도가 지속됨.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>관심 있는 분야에서는 몰입력이 생길 가능성.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>업무 품질 저하, 팀 사기 저하, 다른 직원들에게도 부정적 영향을 미침.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>작은 성공을 반복 경험시켜 자존감을 회복시키고, 관심 분야를 조금씩 부여.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"당신이 잘할 수 있는 부분을 찾고 싶습니다. 작은 것부터 성공을 쌓아가면서, 함께 변화를 만들어봅시다."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>개인 관심사를 파악해 맞춤형 업무 부여.
+성장 곡선이 보이지 않으면 인사 전환 또는 퇴직 유도까지 고려.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="이기적형">
+                        <h3>이기적형 <span>🦔</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>팀워크보다 개인 이익을 우선</li>
+                                    <li>협력보다 본인 편의만 챙김</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>팀 성과 기반 보상 시스템 적용</li>
+                                    <li>협력과 소통을 평가 항목에 넣기</li>
+                                    <li>반복될 경우, 개인주의가 심한 인재는 조기에 정리</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>개인 이익을 조직보다 우선시. 팀 목표보다는 자신의 편의를 먼저 생각함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>자기 목표 달성에 대한 집중력과 추진력이 강함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>팀워크 저하, 갈등 유발, 집단 성과 손실.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>개인 성과가 아닌 팀 성과에 대한 보상 체계를 강화해야 함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"팀의 성공이 곧 개인의 성공입니다. 혼자 성과를 내는 게 아니라, 팀 전체가 잘 돼야 당신의 성과도 인정받을 수 있어요."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>협력과 소통 항목을 성과 평가에 포함.
+이기적 행동이 반복되면 빠른 시간 안에 재배치나 정리 조치.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="employee-style-card fade-in" data-style="정보독점형">
+                        <h3>정보 독점형 <span>🔐</span></h3>
+                        <div class="style-details">
+                            <div class="style-traits">
+                                <h4>특징</h4>
+                                <ul>
+                                    <li>본인만 정보를 독점하고 공유 꺼림</li>
+                                    <li>업무 연속성에 심각한 문제 발생</li>
+                                </ul>
+                            </div>
+                            <div class="style-solutions">
+                                <h4>대처법</h4>
+                                <ul>
+                                    <li>모든 업무 정보를 '공유 문서화' 규칙화</li>
+                                    <li>"업무 인수인계 의무"를 명시</li>
+                                    <li>정보 독점을 성과 평가에 반영</li>
+                                </ul>
+                            </div>
+                            <button class="view-details-btn">자세히 보기</button>
+                        </div>
+                        <div class="detailed-info hidden">
+                            <h4>상세 분석</h4>
+                            <div class="detail-section">
+                                <h5>◆ 특성</h5>
+                                <p>업무 정보를 자신만 소유하고 공유를 꺼림. 인수인계나 팀 협업을 어렵게 만듦.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 장점</h5>
+                                <p>업무에 대한 깊은 이해도와 책임감을 가지고 있을 가능성.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 단점</h5>
+                                <p>업무 연속성 중단, 조직 리스크 증가, 신규 인력 적응 방해.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 개선점</h5>
+                                <p>모든 정보를 공유 문서화하고, 인수인계 의무를 강화해야 함.</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 무슨 말을 해야 하나</h5>
+                                <p>"업무 정보는 개인 것이 아니라 회사의 자산입니다. 우리가 함께 일하려면 정보를 투명하게 공유해야 합니다."</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>◆ 대처법</h5>
+                                <p>공유 문서 작성 의무화.
+                                정보 독점은 평가 항목에 명시하여 성과에 직접 반영하고, 반복 시 강력 조치.</p>
+                            </div>
+                            <button class="close-details-btn">접기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6번째 영역: 챗봇 -->
+    <div id="chatbot-container">
+        <div class="chatbot-header">
+            <h3>리더십 챗봇</h3>
+            <button id="close-chat-btn" type="button" onclick="document.getElementById('chatbot-container').classList.remove('visible');">&times;</button>
+        </div>
+        <div class="chat-messages">
+            <div class="message bot">안녕하세요! 리더십에 관한 고민이 있으신가요?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="질문을 입력하세요...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- 7번째 영역: 연락처 -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>연락처</h2>
+            <div class="contact-info">
+                <div class="info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>매장주소: 서울특별시 중구 을지로 123</p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-phone"></i>
+                    <p>전화번호: 02-123-4567</p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-fax"></i>
+                    <p>팩스: 02-123-4568</p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-envelope"></i>
+                    <p>이메일: info@middleearth-leadership.com</p>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-blogger"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 플로팅 챗봇 버튼 (상시 고정) -->
+    <div class="floating-chat-btn">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.getElementById('close-chat-btn');
+            const chatContainer = document.getElementById('chatbot-container');
+            
+            if (closeBtn && chatContainer) {
+                closeBtn.addEventListener('click', function() {
+                    chatContainer.classList.remove('visible');
+                });
+            }
+            
+            // 챗봇 버튼들에 이벤트 추가
+            const chatbotBtn = document.getElementById('chatbot-btn');
+            const floatingChatBtn = document.querySelector('.floating-chat-btn');
+            
+            function openChatbot() {
+                chatContainer.classList.add('visible');
+            }
+            
+            if (chatbotBtn) chatbotBtn.addEventListener('click', openChatbot);
+            if (floatingChatBtn) floatingChatBtn.addEventListener('click', openChatbot);
+        });
+    </script>
+</body>
+</html> 
